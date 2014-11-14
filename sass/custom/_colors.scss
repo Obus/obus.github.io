@@ -1,0 +1,72 @@
+// Here you can easily change your sites's color scheme.
+// To give it a try, uncomment some of the lines below rebuild your blog, and see how it works.
+// If you need a handy color picker try http://hslpicker.com
+
+$header-bg: #303030;
+$subtitle-color: #0f9fff;
+$nav-bg: #2b2b2b;
+$nav-bg-front: #303030;
+$nav-bg-back: #303030;
+//$sidebar-bg: desaturate(#eceff5, 8);
+//$sidebar-link-color: saturate(#526f9a, 10);
+//$sidebar-link-color-hover: darken(#7ab662, 9);
+//$footer-bg: #ccc !default;
+//$footer-bg-front: image-url('noise.png');
+//$footer-bg-back: linear-gradient(lighten($footer-bg, 8), $footer-bg, darken($footer-bg, 11));
+
+
+/* To use the light Solarized highlighting theme uncomment the following line */
+//$solarized: light;
+
+/* If you want to tweak the Solarized colors you can do that here */
+//$base03:          #002b36; //darkest blue
+//$base02:          #073642; //dark blue
+//$base01:          #586e75; //darkest gray
+//$base00:          #657b83; //dark gray
+//$base0:           #839496; //medium gray
+//$base1:           #93a1a1; //medium light gray
+//$base2:           #eee8d5; //cream
+//$base3:           #fdf6e3; //white
+//$solar-yellow:    #b58900;
+//$solar-orange:    #cb4b16;
+//$solar-red:       #dc322f;
+//$solar-magenta:   #d33682;
+//$solar-violet:    #6c71c4;
+//$solar-blue:      #268bd2;
+//$solar-cyan:      #2aa198;
+//$solar-green:     #859900;
+
+
+/* Non highlighted code colors */
+//$pre-bg: $base03;
+//$pre-border: darken($base02, 5);
+//$pre-color: $base1;
+
+$page-bg: #303030;
+
+$title-color: #0f9fff;
+
+$nav-color: #f2f2f2;
+$nav-color-hover: #0f9fff;
+$nav-border: #5c5c5c;
+$nav-border-top: #0f9fff;
+$nav-border-bottom: #5c5c5c;
+$nav-border-left: #0f9fff;
+$nav-border-right: #0f9fff;
+
+$footer-color: #f2f2f2;
+$footer-bg: #2b2b2b;
+$footer-bg-front: #2b2b2b;
+$footer-bg-back: #2b2b2b;
+$footer-color: #f2f2f2;
+$footer-color-hover: #0f9fff;
+$footer-border-top: #5c5c5c;
+$footer-border-bottom: #0f9fff;
+$footer-link-color: #f2f2f2;
+$footer-link-color-hover: #0f9fff;
+$page-border-bottom: #5c5c5c;
+
+html {
+  background: #303030 !important;
+}
+
