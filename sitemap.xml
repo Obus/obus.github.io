@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>http://datadeep.ru/blog/2014/11/14/optimizatsiia-v-mashinnom-obuchienii/</loc>
+    <lastmod>2014-11-14T12:07:51+04:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>http://datadeep.ru/blog/2014/11/07/chto-takoie-data-science/</loc>
+    <lastmod>2014-11-07T15:08:41+04:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>http://datadeep.ru/</loc>
+    <lastmod>2014-11-14T15:00:52+04:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>http://datadeep.ru/blog/archives/</loc>
+    <lastmod>2014-11-14T15:00:52+04:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>http://datadeep.ru/about_blog/</loc>
+    <lastmod>2014-11-14T15:00:52+04:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+</urlset>
