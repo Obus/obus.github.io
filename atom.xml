@@ -4,7 +4,7 @@
   <title><![CDATA[DataDeep]]></title>
   <link href="http://datadeep.ru/atom.xml" rel="self"/>
   <link href="http://datadeep.ru/"/>
-  <updated>2014-11-20T02:34:58+04:00</updated>
+  <updated>2014-11-20T02:36:28+04:00</updated>
   <id>http://datadeep.ru/</id>
   <author>
     <name><![CDATA[Команда datadeep.ru]]></name>
@@ -278,7 +278,7 @@ f(\theta_{k-1}) - f(\theta_{k}) < \eps %]]&gt;</script>, параметра <scr
 
 <p><img src="http://datadeep.ru/images/LinearRegression_GradientDescent_50iter.gif" width="768" height="576" title="Gradient Descent iterations" /></p>
 
-<p>Успех: за 56 итераций мы получили приближение c точностью до второго знака после запятой как по параметру <script type="math/tex">(\mid\mid\theta^* - \theta_{56}\mid\mid \sim 0.02)</script>, так и по значению функции $($F(\theta_{56}) - F(\theta^*) \sim 0.07)$</p>
+<p>Успех: за 56 итераций мы получили приближение c точностью до второго знака после запятой как по параметру <script type="math/tex">(\mid\mid\theta^* - \theta_{56}\mid\mid \sim 0.02)</script>, так и по значению функции <script type="math/tex">(F(\theta_{56}) - F(\theta^*) \sim 0.07)</script></p>
 
 <h2 id="section-5">Заключение</h2>
 <p>Надеюсь, мне удалось ответить на вопросы, заданные в самом начале статьи. Мы поставили общую задачу оптимизации, на паре примеров узнали как она связана с задачей машинного обучения, и логично пришли к методу градиентного спуска, даже применив его на практике. Вполне неплохо, в последующих статьях я постараюсь лучше раскрыть тему применения алгоритмов оптимизации в машинном обучении и прояснить некоторые интересные детали.</p>
