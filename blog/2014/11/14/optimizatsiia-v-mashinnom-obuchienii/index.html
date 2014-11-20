@@ -123,7 +123,7 @@
 
 <p>Так вот, просто и незатейливо. Но постойте, кто эти <script type="math/tex">\risk</script>, <script type="math/tex">\theta</script>, <script type="math/tex">\mathcal{X}</script> и какое отношение они имеют к машинному обучению?</p>
 
-<p>Оказывается, большинство задач машинного обучения формулируются именно таким образом: в виде минимизации некоего функционала <script type="math/tex">\risk</script> по некоторому параметру <script type="math/tex">\theta</script>. Например, в случае задачи классификации или регрессии мы стараемся предсказывать одну переменную (<script type="math/tex">y</script>) на основе другой (<script type="math/tex">x</script>) с помощью набора функций–“оракулов” <script type="math/tex">\{\hyp_\theta\}_{\theta\in\mathcal{X}}</script>, выбирая наилучшую из них на основе <em>обучающей выборки</em> <script type="math/tex">\{x_i, y_i\}_{i=1}^N</script> — в таком случае мы хотим минимизировать ошибку предсказания на имеющейся выборке. Ошибку предсказания чаще всего записывают как</p>
+<p>Оказывается, большинство задач машинного обучения формулируются именно таким образом: в виде минимизации некоего функционала <script type="math/tex">\risk</script> по некоторому параметру <script type="math/tex">\theta</script>. Например, в случае задачи классификации или регрессии мы стараемся предсказывать одну переменную (<script type="math/tex">y</script>) на основе другой (<script type="math/tex">x</script>) с помощью набора функций–“оракулов” <script type="math/tex">\{\hyp_\theta\}_{\theta\in\mathcal{X}}</script>, выбирая наилучшую из них на основе <em>обучающей выборки</em> <script type="math/tex">\{x_i, y_i\}_{1}^N</script> — в таком случае мы хотим минимизировать ошибку предсказания на имеющейся выборке. Ошибку предсказания чаще всего записывают как</p>
 
 <script type="math/tex; mode=display"> \risk(\theta) = \sum_{i=1}^n \loss(\hyp_{\theta}(x_i), y_i),</script>
 
@@ -134,14 +134,14 @@
 <p>Этот метод решает задачу кластеризации — разбиения множества точек <script type="math/tex">\{x_i\}_1^N</script> на <script type="math/tex">K</script> (<script type="math/tex">\leq N</script>) непересекающихся множеств-кластеров.  Результат кластеризации методом $K$-средних — это, во-первых, разбиение множества ${1,\ldots,N}$ на <script type="math/tex">K</script> кластеров: <script type="math/tex">\{\mathcal{C}_k\}_1^K</script> и, во-вторых, центр каждого из этих кластеров: <script type="math/tex">\{\mu_k\}_1^K</script>. Функция <script type="math/tex">\risk(\theta)</script> для метода $K$-средних записывается следующим образом</p>
 
 <script type="math/tex; mode=display">
-\risk\left(\theta = (K, \{\mathcal{C}_k\}_1^K, \{\mu_j\}_1^K)\right) = \sum_{K=1}^K \sum_{i\in \mathcal{C}_k} (x_i - \mu_k)^2 \to \min\limits_{\theta},
+\risk\left(\theta = (K, \{\mathcal{C}_k\}_1^K, \{\mu_k\}_1^K)\right) = \sum_{K=1}^K \sum_{i\in \mathcal{C}_k} (x_i - \mu_k)^2 \to \min\limits_{\theta},
 </script>
 
 <p>— то есть метод <script type="math/tex">K</script>-средних ищет такое разбиение множества <script type="math/tex">\{x_i\}_1^N</script> на кластеры, чтобы сумма расстояний от каждой точки до центра кластера, которому она принадлежит, была минимальна.</p>
 
 <h4 id="section-1">Линейная регрессия с квадратичной функцией потерь</h4>
 
-<p>Этот метод решает задачу регрессии — предсказания выходов <script type="math/tex">y_i\in\mathbb{R}</script> по входам <script type="math/tex">x_i=(x_i^{(1)},\ldots,x_i^{(p)})^T\in\mathbb{R}^p</script> на основе обучающей выборки <script type="math/tex">\{ x_i, y_i \}_1^N</script>. Метод линейной регрессии “предполагает”, что выход <script type="math/tex">y</script> может быть представлен в виде линейной функции от входов <script type="math/tex">x_i^{(1)},\ldots,x_i^{(p)}</script> и от параметров <script type="math/tex">\theta^{(1)},\ldots,\theta^{(p)}</script>: <script type="math/tex">y = \sum_{j=1}^p \theta^{(j)} x^{(j)}</script>. <script type="math/tex">\risk(\theta)</script> записывается следующим образом:</p>
+<p>Этот метод решает задачу регрессии — предсказания выходов <script type="math/tex">y_i\in\mathbb{R}</script> по входам <script type="math/tex">x_i=(x_i^{(1)},\ldots,x_i^{(p)})^T\in\mathbb{R}^p</script> на основе обучающей выборки <script type="math/tex">\{ x_i, y_i \}_1^N</script>. Метод линейной регрессии “предполагает”, что выход <script type="math/tex">y</script> может быть представлен в виде линейной функции от входов <script type="math/tex">x_i^{(1)},\ldots,x_i^{(p)}</script> и от параметров <script type="math/tex">\theta^{(1)},\ldots,\theta^{(p)}</script>: <script type="math/tex">y_i = \sum_{j=1}^p \theta^{(j)} x_i^{(j)}</script>. <script type="math/tex">\risk(\theta)</script> записывается следующим образом:</p>
 
 <script type="math/tex; mode=display">
 \risk(\theta) = \sum_{i=1}^N (x_i^T\theta - y_i)^2 \to \min\limits_{\theta},
@@ -217,6 +217,10 @@
 
 <p>Фактически, мы сделали шажок длиной <script type="math/tex">\alpha</script> в направлении <em>противоположном</em> направлению градиента <script type="math/tex">\nabla \risk(\theta)</script>. Это вполне логично, ведь направление градиента — это направление наибольшего роста функции, а противоположное ему — направление наискорейшего ее уменьшения. В этом и заключается основная идея градиентных методов: шаг за шагом, спускаться против направления градиента к минимуму. С этими знаниями можем уже сформулировать простенький алгоритм оптимизации</p>
 
+<ul>
+  <li>Вариант агоритма 1</li>
+</ul>
+
 <script type="math/tex; mode=display">% <![CDATA[
 
 \begin{eqnarray*}
@@ -233,6 +237,10 @@
 & \quad & \text{return}\; \theta_k
 \end{eqnarray*}
  %]]></script>
+
+<ul>
+  <li>Вариант агоритма 2</li>
+</ul>
 
 <script type="math/tex; mode=display">% <![CDATA[
 
@@ -357,7 +365,7 @@ f(\theta_{k-1}) - f(\theta_{k}) < \eps %]]></script>, параметра <script
 
 <p><img src="/images/LinearRegression_GradientDescent_50iter.gif" width="768" height="576" title="Gradient Descent iterations" /></p>
 
-<p>Успех: за 56 итераций мы получили приближение c точностью до второго знака после запятой как по параметру <script type="math/tex">(\mid\mid\theta^* - \theta_{56}\mid\mid \sim 0.02)</script>, так и по значению функции <script type="math/tex">(F(\theta_{56}) - F(\theta^*) \sim 0.07)</script></p>
+<p>Успех: за 56 итераций мы получили приближение c точностью до второго знака после запятой как по параметру <script type="math/tex">(\mid\mid\theta^* - \theta_{56}\mid\mid \simeq 0.02)</script>, так и по значению функции <script type="math/tex">(F(\theta_{56}) - F(\theta^*) \simeq 0.07)</script></p>
 
 <h2 id="section-5">Заключение</h2>
 <p>Надеюсь, мне удалось ответить на вопросы, заданные в самом начале статьи. Мы поставили общую задачу оптимизации, на паре примеров узнали как она связана с задачей машинного обучения, и логично пришли к методу градиентного спуска, даже применив его на практике. Вполне неплохо, в последующих статьях я постараюсь лучше раскрыть тему применения алгоритмов оптимизации в машинном обучении и прояснить некоторые интересные детали.</p>
