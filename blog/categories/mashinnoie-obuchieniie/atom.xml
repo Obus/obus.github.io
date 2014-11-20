@@ -4,7 +4,7 @@
   <title><![CDATA[Категория: Машинное обучение | DataDeep]]></title>
   <link href="http://datadeep.ru/blog/categories/mashinnoie-obuchieniie/atom.xml" rel="self"/>
   <link href="http://datadeep.ru/"/>
-  <updated>2014-11-20T11:58:53+04:00</updated>
+  <updated>2014-11-20T12:41:53+04:00</updated>
   <id>http://datadeep.ru/</id>
   <author>
     <name><![CDATA[Команда datadeep.ru]]></name>
@@ -74,7 +74,7 @@
 
 <h2 id="section-2">Математическая оптимизация</h2>
 
-<p>Решив, что оптимизация в машинном обучении, а значит и в нашем арсенале — must have, обсудим ее по-подробнее.</p>
+<p>Решив, что оптимизация в машинном обучении, а значит и в нашем арсенале — must have, обсудим ее поподробнее.</p>
 
 <p>Математическая оптимизация зародилась в XVIII–XIX века и окончательно оформилась в XX веке. За этот срок у нее появилось множество видов, подвидов, методов и приложений. Как мы и упомянали выше, общая задача оптимизации ставится следующим образом</p>
 
@@ -84,9 +84,9 @@
 
 <p>но от настолько общей постановки мало толку — совершенно непонятно как ее решать: не имея информации о природе <script type="math/tex">\risk</script> и <script type="math/tex">\mathcal{X}</script>, мы безоружны, можем только вслепую тыкать “пальцем в небо” (вернее, в <script type="math/tex">\mathcal{X}</script>) в надежде попасть в точку минимума.
 Собственно, чем не вариант, есть даже схожий по идее метод с вполне себе научным названием: метод <em>равномерного поиска</em> (aka перебора). Суть его, как вы уже догадались, состоит в том, чтобы наложить <script type="math/tex">\varepsilon</script>-сетку на множество <script type="math/tex">\mathcal{X}</script> и измерить функцию <script type="math/tex">\risk</script> в каждом узле сетки. Так найдется узел <script type="math/tex">\hat\theta</script> с наименьшим значением <script type="math/tex">\risk</script>, и … пользы от этого знания будет чуть больше чем никакой.
-Без дополнительных ограничений на <script type="math/tex">\risk</script> и/или <script type="math/tex">\mathcal{X}</script> наш <script type="math/tex">\hat\theta</script> ничего не говорит ни о наимаеньшем значении <script type="math/tex">\risk^* = \min\limits_{\theta\in\mathcal{X}} \risk(\theta)</script> не о соответствующем аргументе <script type="math/tex">\theta^* = \arg\min\limits_{\theta\in\mathcal{X}} \risk(\theta)</script>. Действительно, <script type="math/tex">\risk</script> может меняться сколь угодно быстро, принимая между узлами сетки какие угодно значения, а то и вовсе быть разрывной. То есть знания о функции в узлах не говорит ничего о ней вне этих узлов. Так вот, старались-старались, считали функцию в каждом узле, а сидим теперь у разбитого корыта.</p>
+Без дополнительных ограничений на <script type="math/tex">\risk</script> и/или <script type="math/tex">\mathcal{X}</script> наш <script type="math/tex">\hat\theta</script> ничего не говорит ни о наимаеньшем значении <script type="math/tex">\risk^* = \min\limits_{\theta\in\mathcal{X}} \risk(\theta)</script> не о соответствующем аргументе <script type="math/tex">\theta^* = \arg\min\limits_{\theta\in\mathcal{X}} \risk(\theta)</script>. Действительно, <script type="math/tex">\risk</script> может меняться сколь угодно быстро, принимая между узлами сетки какие угодно значения, а то и вовсе быть разрывной. То есть знания о функции в узлах не говорит ничего о ней вне этих узлов. Так вот, старались-старались, считали функцию в каждом узле, а толку — ноль.</p>
 
-<p>Но унывать всякий может, а надо это дело исправить. В чем наша проблема?
+<p>Но не стоит отчаиваться, надо это дело исправить. В чем наша проблема?
 Проблема наша в излишнней свободе функции $\risk$, точнее в неограниченной скорости ее изменения. </p>
 
 <p>Так давайте ее ограничим! Например, вот так:</p>
@@ -138,51 +138,20 @@
 
 <p>Фактически, мы сделали шажок длиной <script type="math/tex">\alpha</script> в направлении <em>противоположном</em> направлению градиента <script type="math/tex">\nabla \risk(\theta)</script>. Это вполне логично, ведь направление градиента — это направление наибольшего роста функции, а противоположное ему — направление наискорейшего ее уменьшения. В этом и заключается основная идея градиентных методов: шаг за шагом, спускаться против направления градиента к минимуму. С этими знаниями можем уже сформулировать простенький алгоритм оптимизации</p>
 
-<ul>
-  <li>Вариант агоритма 1</li>
-</ul>
-
 <script type="math/tex; mode=display">% &lt;![CDATA[
 
+\text{Simple_Gradient_Descent}(\risk, \, \theta_0, \, \alpha):
+\\
 \begin{eqnarray*}
-&\textbf{def}& \; \text{simple_gradient_descent}(\risk, \, \theta_0, \, \alpha):
+& \qquad \qquad & k \leftarrow 0
 \\
-& \quad & k \leftarrow 0
+& \qquad \qquad& \textbf{while} \; not \; converged \;:
 \\
-& \quad & \textbf{while} \; not \; converged \; :
+& \qquad \qquad & \qquad k \leftarrow k + 1
 \\
-& \quad & \qquad k \leftarrow k + 1
+& \qquad \qquad & \qquad \theta_k \leftarrow \theta_{k-1} - \alpha\frac{\nabla \risk(\theta_{k-1})}{|\nabla \risk(\theta_{k-1})|}
 \\
-& \quad & \qquad \theta_k \leftarrow \theta_{k-1} - \alpha\frac{\nabla \risk(\theta_{k-1})}{|\nabla \risk(\theta_{k-1})|}
-\\
-& \quad & \text{return}\; \theta_k
-\end{eqnarray*}
- %]]&gt;</script>
-
-<ul>
-  <li>Вариант агоритма 2</li>
-</ul>
-
-<script type="math/tex; mode=display">% &lt;![CDATA[
-
-\begin{eqnarray*}
-&\textbf{Algorithm}& \; \text{SimpleGradientDescent}
-\\
-& \;\;\text{Input:} \; \theta_0, & \risk, \, \alpha
-\\
-& \;\;\text{Output:}\; \hat{\theta} &
-\\
-& \quad & k \leftarrow 0
-\\
-& \quad & \textbf{while} \; not \; converged \; \textbf{do}:
-\\
-& \quad & \qquad k \leftarrow k + 1
-\\
-& \quad & \qquad \theta_k \leftarrow \theta_{k-1} - \alpha\frac{\nabla \risk(\theta_{k-1})}{|\nabla \risk(\theta_{k-1})|}
-\\
-& \quad & \textbf{done}
-\\
-& \quad & \textbf{return}\; \theta_k
+& \qquad \qquad & \textbf{return}\; \theta_k
 \end{eqnarray*}
  %]]&gt;</script>
 
@@ -196,18 +165,18 @@ f(\theta_{k-1}) - f(\theta_{k}) < \eps %]]&gt;</script>, параметра <scr
 
 <script type="math/tex; mode=display">% &lt;![CDATA[
 
+\text{Gradient_Descent}(\risk, \, \theta_0, \, \alpha):
+\\
 \begin{eqnarray*}
-&\textbf{def}& \; \text{gradient_descent}(\risk, \, \theta_0, \, \alpha):
+& \qquad \qquad & k \leftarrow 0
 \\
-& \quad & k \leftarrow 0
+& \qquad \qquad& \textbf{while} \; not \; converged \;:
 \\
-& \quad & \textbf{while} \; not \; converged \;:
+& \qquad \qquad & \qquad k \leftarrow k + 1
 \\
-& \quad & \qquad k \leftarrow k + 1
+& \qquad \qquad & \qquad \theta_k \leftarrow \theta_{k-1} - \alpha_k\nabla \risk(\theta_{k-1})
 \\
-& \quad & \qquad \theta_k \leftarrow \theta_{k-1} - \alpha_k\nabla \risk(\theta_{k-1})
-\\
-& \quad & \text{return}\; \theta_k
+& \qquad \qquad & \textbf{return}\; \theta_k
 \end{eqnarray*}
  %]]&gt;</script>
 
@@ -236,8 +205,8 @@ f(\theta_{k-1}) - f(\theta_{k}) < \eps %]]&gt;</script>, параметра <scr
 </script>
 
 <p>где <script type="math/tex">X\in\mathbb{R}^{N\times p}</script> — матрица, чьи строки — <script type="math/tex">x_i</script>, а <script type="math/tex">y = (y_1,\ldots,y_N)</script>.
-Существует аналитическое решение этой задачи: <script type="math/tex">\hat\theta = (X^T X)^{-1} X^T y</script> (оценка <a href="http://ru.wikipedia.org/wiki/%D0%9C%D0%B5%D1%82%D0%BE%D0%B4_%D0%BD%D0%B0%D0%B8%D0%BC%D0%B5%D0%BD%D1%8C%D1%88%D0%B8%D1%85_%D0%BA%D0%B2%D0%B0%D0%B4%D1%80%D0%B0%D1%82%D0%BE%D0%B2">методом наименьших квадратов</a>). Но, операция обращения матрицы довольно <a href="http://en.wikipedia.org/wiki/Computational_complexity_of_mathematical_operations#Matrix_algebra">дорогая</a>, в особенности в задачах, где размерность <script type="math/tex">x</script> огромна и матричные операции просто не могут быть выполнены в памяти.
-К счастью, наша функция <script type="math/tex">\risk</script> удовлетворяет всем необходимым условиям и для нее выполняется соотношение <script type="math/tex">|\risk(\theta_k) - \risk^*| \xrightarrow{k\to\infty} 0</script>. Поэтому, мы имеем полное право воспользоваться методом градиентного спуска.</p>
+Существует аналитическое решение этой задачи: <script type="math/tex">\hat\theta = (X^T X)^{-1} X^T y</script> (оценка <a href="http://ru.wikipedia.org/wiki/%D0%9C%D0%B5%D1%82%D0%BE%D0%B4_%D0%BD%D0%B0%D0%B8%D0%BC%D0%B5%D0%BD%D1%8C%D1%88%D0%B8%D1%85_%D0%BA%D0%B2%D0%B0%D0%B4%D1%80%D0%B0%D1%82%D0%BE%D0%B2">методом наименьших квадратов</a>). Но операция обращения матрицы довольно <a href="http://en.wikipedia.org/wiki/Computational_complexity_of_mathematical_operations#Matrix_algebra">дорогая</a>, в особенности в задачах, где размерность <script type="math/tex">x</script> огромна и матричные операции просто не могут быть выполнены в памяти.
+К счастью, наша функция <script type="math/tex">\risk</script> удовлетворяет всем необходимым условиям и для нее выполняется соотношение <script type="math/tex">|\risk(\theta_k) - \risk^*| \xrightarrow{k\to\infty} 0</script>. Поэтому мы имеем полное право воспользоваться методом градиентного спуска.</p>
 
 <p>В первую очередь нам нужны данные: <script type="math/tex">\{x_i, y_i\}_1^N</script>, для простоты возьмем модельные (<script type="math/tex">N=1000</script>):</p>
 
